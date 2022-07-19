@@ -1,0 +1,18 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block css_special %}
+{% endblock css_special %}
+
+{% block header %}
+{% endblock header %}
+
+{% block main %}
+<section class="main page-logout">
+    <h1 class="u-text-center u-pt-64">You have already logout!</h1>
+    <p class="u-text-center">Back to <a href="{% url 'mdpage-overview' %}">Homepage</a></p>
+</section>
+{% endblock main %}
+
+{% block js %}
+{% endblock js %}

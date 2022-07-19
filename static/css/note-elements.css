@@ -1,0 +1,378 @@
+/* ------------------------------- *\
+    layout
+\* ------------------------------- */
+.note-content{
+    max-width: 960px;
+    margin: 0 auto;
+    padding-bottom: 200px;
+    font-family: var(--font-family-sans-serif);
+    background-color: var(--color-default-bg-1);
+}
+
+/* toc */
+.note-content .toc {
+    position: fixed;
+    top: 96px;
+    left: calc(((100vw - 960px) / 2) + 960px);
+    z-index: 99;
+}
+/* toc in editor page */
+.page-editor .note-content .toc {
+    display: none;
+}
+
+/* ------------------------------- *\
+    Text
+\* ------------------------------- */
+/* Headings */
+.note-content h1{
+    margin-bottom: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
+    z-index: 1;
+}
+.note-content h1:before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 0;
+    border-radius: 8px;
+    background-color: var(--color-default-primary);
+    width: 100%;
+    height: 24px;
+    z-index: -1;
+    opacity: 0.12;
+}
+@media (max-width: 540px){
+    .note-content h1{
+        font-size: 28px;
+        line-height: 48px;
+        font-weight: 600;
+    }
+}
+.note-content h2{
+    padding-top: 16px;
+    margin-bottom: 24px;
+    z-index: 1;
+    padding-left: 8px;
+}
+.note-content h2:before {
+    content: '';
+    position: absolute;
+    top: 38px;
+    left: 0;
+    border-radius: 6px;
+    background-color: var(--color-default-primary);
+    width: 100%;
+    height: 20px;
+    z-index: -1;
+    opacity: 0.12;
+}
+@media (max-width: 540px){
+    .note-content h2{
+        font-size: 24px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+}
+.note-content h3{
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+}
+.note-content h3:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    color: var(--color-default-primary);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid var(--color-default-primary);
+    opacity: 0.6;
+}
+.note-content h4{
+    margin-bottom: 16px;
+    padding-top: 8px;
+    padding-left: 16px;
+}
+.note-content h4:before{
+    content: '';
+    position: absolute;
+    top: 19px;
+    left: 0;
+    width: 4px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid var(--color-default-primary);
+}
+@media (max-width: 540px){
+    .note-content h4{
+        font-weight: 600;
+    }
+}
+.note-content h5{
+    margin-bottom: 16px;
+}
+@media (max-width: 540px){
+    .note-content h5{
+        font-weight: 600;
+    }
+}
+.note-content h6{
+    margin-bottom: 16px;
+}
+@media (max-width: 540px){
+    .note-content h6{
+        font-weight: 600;
+    }
+}
+
+/* Paragraph */
+.note-content p{
+    line-height: 32px;
+    /*text-align: justify;*/
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    overflow-wrap: break-word;
+}
+/* bold */
+.note-content strong {
+    font-weight: 600;
+}
+/* highlight */
+.note-content strong em{
+    font-style: normal;
+    font-weight: 600;
+    color: var(--color-default-primary);
+    text-decoration: none;
+}
+
+/* ------------------------------- *\
+    Horizontal rule
+\* ------------------------------- */
+.note-content hr {
+    border: 0;
+    border-bottom: 1px solid var(--color-default-gray-7);
+    margin-top: 0px;
+    margin-bottom: 24px;
+}
+.note-content h3 ~ hr {
+    margin-top: -16px;
+}
+
+/* ------------------------------- *\
+    Blockquote
+\* ------------------------------- */
+.note-content blockquote{
+    overflow-wrap: break-word;
+    margin: 8px 0 24px 0;
+    padding: 16px;
+    background-color: var(--color-default-bg-2);
+    border: 1px solid var(--color-default-gray-8);
+    border-left: 4px solid var(--color-default-primary);
+}
+.note-content blockquote > :last-child{
+    margin-bottom: 0;
+}
+
+/* ------------------------------- *\
+    List
+\* ------------------------------- */
+/* List common */
+.note-content ul, .note-content ol{
+    padding-left: 32px;
+}
+@media (max-width: 768px){
+    .note-content ul, .note-content ol{
+        padding-left: 24px;
+    }
+}
+.note-content li{
+    overflow-wrap: break-word;
+    /*word-wrap: break-word;*/
+    /*word-break: break-all;*/
+    /*word-break: break-word;*/
+    letter-spacing: 0.5px;
+    line-height: 32px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+/* List first order */
+.note-content > ul, .note-content > ol{
+    margin-bottom: 28px;
+}
+.note-content > ul > li > p, .note-content > ol > li > p{
+    margin-bottom: 0px;
+}
+/* List second order */
+.note-content ul > li > ul,
+.note-content ol > li > ol,
+.note-content ol > li > ul,
+.note-content ul > li > ol{
+    /* margin-top: 8px;
+    margin-bottom: 8px; */
+    margin-bottom: 0;
+}
+
+/* Unorder list */
+.note-content ul li::marker{
+    color: var(--color-default-primary);
+}
+
+/* Order list */
+.note-content ol {
+    list-style: none;
+    counter-reset: list;
+}
+.note-content ol > li:before {
+    position: absolute;
+    top: 0px;
+    right: calc(100% + 8px);
+    content: counter(list) ".";
+    counter-increment: list;
+    color: var(--color-default-primary);
+}
+
+/* Check list */
+
+/* ------------------------------- *\
+    Code
+\* ------------------------------- */
+/* code common */
+ .note-content .code-toolbar{
+    margin-top: 8px;
+    margin-bottom: 24px;
+ }
+
+/* code-inline (there is some risk if really use this formation) */
+.note-content h6 code{
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+/* Fenced-code-block */
+/* Settings are in prism.css */
+
+/* ------------------------------- *\
+    Image
+\* ------------------------------- */
+/* Image */
+.note-content img {
+    display: block;
+    width: 80%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--color-default-bg-1);
+    border-radius: 4px;
+    border: 1px solid var(--color-default-gray-7);
+}
+@media (max-width: 768px){
+    .note-content img {
+        position: relative;
+    }
+}
+
+/* ------------------------------- *\
+    Footnotes
+\* ------------------------------- */
+/* Footnotes */
+.note-content .footnotes ol {
+    list-style: none;
+    counter-reset: list;
+}
+.note-content .footnotes ol > li:before {
+    content: "[" counter(list) "] ";
+    counter-increment: list;
+    top: -2px;
+}
+.note-content .footnotes ol li p{
+    display: inline;
+}
+.note-content .footnote{
+    margin-left: 2px;
+}
+.note-content .footnote-ref{
+    font-size: 14px;
+    top: -1px;
+    line-height: inherit;
+    margin: 0 2px;
+}
+.note-content .footnote-ref a:before{
+    content: '['
+}
+.note-content .footnote-ref a:after{
+    content: ']'
+}
+
+/* ------------------------------- *\
+    Table
+\* ------------------------------- */
+/* Table */
+.note-content .table-container{
+    overflow: auto;
+    padding: 1px 2px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+.note-content .table-container ::-webkit-scrollbar{
+    background-color: inherit;
+}
+.note-content .table-container ::-webkit-scrollbar-track {
+    background-color: inherit;
+}
+.note-content .table-container ::-webkit-scrollbar-thumb {
+    background-color: inherit;
+}
+.note-content .table-container:hover ::-webkit-scrollbar-thumb{
+    background-color: var(--color-default-gray-7);
+}
+.note-content .table-container table td{
+    line-height: 40px;
+}
+
+/* ------------------------------- *\
+	Equation
+\* ------------------------------- */
+.note-content .MathJax{
+    outline: none;
+}
+.note-content mjx-container[jax="CHTML"][display="true"]{
+    margin: 0 !important;
+    margin-bottom: 24px !important;
+}
+.note-content p mjx-container[jax="CHTML"][display="true"]:last-child{
+    margin: 0 !important;
+}
+.note-content mjx-mtd{
+    padding: 0.28em !important;
+}
+
+/* ------------------------------- *\
+    Admonition
+\* ------------------------------- */
+/* Admonition default */
+.note-content .admonition{
+    padding: 48px 32px 16px 32px;
+    border-radius: 8px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+.note-content .admonition:before{
+    position: absolute;
+    left: 16px;
+    top: 14px;
+}
+.note-content .admonition p{
+    margin-bottom: 16px;
+}
+.note-content .admonition ul,
+.note-content .admonition ol{
+    margin-bottom: 16px;
+}
+.note-content .admonition :last-child{
+    margin-bottom: 0px;
+}

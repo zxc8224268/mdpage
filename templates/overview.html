@@ -1,0 +1,436 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block css_special %}
+{% endblock css_special %}
+
+{% block header %}
+    <header class="header">
+        <div class="navbar">
+            <!-- Start breadcrumbs -->
+            <div class="breadcrumbs">
+                <div class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="{% url 'mdpage-overview' %}">
+                        <i class="icon-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <i class="icon-next"></i>
+                </div>
+            </div>
+            <!-- End breadcrumbs -->
+
+            <!-- Start authentication -->
+            <div class="inline-group navbar__item-right">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="icon-btn">
+                        <i class="icon-logout"></i>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}?next={{ request.path }}" class="icon-btn">
+                        <i class="icon-login"></i>
+                    </a>
+                {% endif %}
+            </div>
+            <!-- End authentication -->
+        </div>
+    </header>
+{% endblock header %}
+
+{% block main %}
+    <!-- Start main -->
+    <section class="main page-overview">
+        <div class="container">
+            <!-- Start page header -->
+            <div class="inline-group u-mb-32">
+                <h1 class="heading-1">Overview</h1>
+                {% if request.user.is_authenticated %}
+                <button class="btn inline-group__item-right pop-up-trigger" attr-pop-up="pop-up-create-group">
+                    <i class="icon-plus"></i>
+                    <span>Create Group</span>
+                </button>
+                {% endif %}
+            </div>
+            <!-- End page header -->
+
+            <!-- Start public -->
+            <div class="groups-list">
+                <div class="groups-list__header inline-group">
+                    <h3 class="groups-list__heading">
+                        <i class="icon-globe u-color-info"></i>
+                        <span>Public</span>
+                    </h3>
+                    <div class="inline-group inline-group__item-right">
+                        <!-- <button class="icon-btn icon-btn">
+                            <i class="icon-menu-line"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <div id="group-status-1" class="groups-list__list row">
+                    {% for group in public_groups %}
+                        <div class="col-lg-4">
+                            <div class="groups-list__group" attr-group-id="{{ group.id }}" attr-group-status="{{ group.status }}" attr-group-order="{{ group.order }}">
+                                <i class="icon-folder"></i>
+                                <a class="content" href="{% url 'mdpage-itemsList' group.id %}">
+                                    <h3 class="name">{{ group.name }}</h3>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                <button id="" class="more-operator pop-up-trigger icon-btn toggle-trigger">
+                                    <i class="icon-more"></i>
+                                </button>
+                                <ul class="groups-list__group-op-list toggle-content">
+                                    <li><a class="pop-up-trigger" attr-pop-up="pop-up-edit-group">Edit</a></li>
+                                    <li><a class="pop-up-trigger u-color-error" attr-pop-up="pop-up-delete-group">Delete</a></li>
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- End public -->
+
+            <!-- Start private -->
+            {% if request.user.is_authenticated %}
+            <div class="groups-list">
+                <div class="groups-list__header inline-group">
+                    <h3 class="groups-list__heading">
+                        <i class="icon-lock u-color-error"></i>
+                        <span>Private</span>
+                    </h3>
+                    <div class="inline-group inline-group__item-right">
+                        <!-- <button class="icon-btn icon-btn">
+                            <i class="icon-menu-line"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <div id="group-status-0" class="groups-list__list row">
+                    {% for group in private_groups %}
+                        <div class="col-lg-4">
+                            <div class="groups-list__group" attr-group-id="{{ group.id }}" attr-group-status="{{ group.status }}" attr-group-order="{{ group.order }}">
+                                <i class="icon-folder"></i>
+                                <a class="content" href="{% url 'mdpage-itemsList' group.id %}">
+                                    <h3 class="name">{{ group.name }}</h3>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                <button id="" class="more-operator pop-up-trigger icon-btn toggle-trigger">
+                                    <i class="icon-more"></i>
+                                </button>
+                                <ul class="groups-list__group-op-list toggle-content">
+                                    <li><a class="pop-up-trigger" attr-pop-up="pop-up-edit-group">Edit</a></li>
+                                    <li><a class="pop-up-trigger u-color-error" attr-pop-up="pop-up-delete-group">Delete</a></li>
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <!-- End private -->
+        </div>
+    </section>
+    <!-- End main -->
+
+    <!-- Start edit item pop-up -->
+    {% if request.user.is_authenticated %}
+    <div class="pop-up" id="pop-up-edit-group">
+        <div class="pop-up__mask pop-up__func-close"></div>
+        <div class="pop-up__panel">
+            <button class="pop-up__func-close pop-up__close icon-btn">
+                <i class="icon-cancel"></i>
+            </button>
+            <div class="pop-up__content">
+                <h2 class="pop-up__title">Edit group!</h2>
+                <div class="inline-group">
+                    <div class="select">
+                        <select id="edit-group-status">
+                            <option value="0" selected="selected">Private</option>
+                            <option value="1">Public</option>
+                        </select>
+                    </div>
+                    <input id="edit-group-name" type="text" placeholder="Group name">
+                    <button id="edit-group-submit" class="btn pop-up__func-close">Change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Start edit pop-up -->
+
+    <!-- Start create group pop-up -->
+    {% if request.user.is_authenticated %}
+    <div class="pop-up" id="pop-up-create-group">
+        <div class="pop-up__mask pop-up__func-close"></div>
+        <div class="pop-up__panel">
+            <button class="pop-up__func-close pop-up__close icon-btn">
+                <i class="icon-cancel"></i>
+            </button>
+            <div class="pop-up__content">
+                <h2 class="pop-up__title">Create a new group!</h2>
+                <div class="inline-group">
+                    <div class="select">
+                        <select id="create-group-status">
+                            <option value="0" selected="selected">Private</option>
+                            <option value="1">Public</option>
+                        </select>
+                    </div>
+                    <input id="create-group-name" type="text" placeholder="Group name">
+                    <button id="create-group-submit" class="btn pop-up__func-close">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Start create pop-up -->
+
+    <!-- Start delete group pop-up -->
+    {% if request.user.is_authenticated %}
+    <div class="pop-up" id="pop-up-delete-group">
+        <div class="pop-up__mask pop-up__func-close"></div>
+        <div class="pop-up__panel">
+            <button class="pop-up__func-close pop-up__close icon-btn">
+                <i class="icon-cancel"></i>
+            </button>
+            <div class="pop-up__content">
+                <h2 class="pop-up__title">Are you sure to delete this group?</h2>
+                <div class="inline-group inline-group--center">
+                    <button id="delete-group-submit" class="btn btn--error pop-up__func-close">Delete</button>
+                    <button class="btn pop-up__func-close">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Start delete pop-up -->
+{% endblock main %}
+
+{% block js %}
+{% if request.user.is_authenticated %}
+<script src="{% static 'vendor/sortablejs/Sortable.min.js' %}"></script>
+<script src="{% static 'vendor/sortablejs/jquery-sortable.js' %}"></script>
+<script>
+/* ----------------------------- *\
+    Sortablejs
+\* ----------------------------- */
+if ($(window).width() > 768){
+    $('#group-status-1').sortable({
+        group: 'group',
+        onEnd: function(event){update_group_orders($(event.from))},
+        onAdd: function(event){
+            // change status attr
+            added_group_id = $(event.clone).find('.groups-list__group').attr('attr-group-id')
+            $('.groups-list__group[attr-group-id="'+added_group_id+'"]').attr('attr-group-status', 1)
+            // update
+            update_group_orders($(event.to))
+        }
+    })
+    $('#group-status-0').sortable({
+        group: 'group',
+        onEnd: function(event){update_group_orders($(event.from))},
+        onAdd: function(event){
+            // change status attr
+            added_group_id = $(event.clone).find('.groups-list__group').attr('attr-group-id')
+            $('.groups-list__group[attr-group-id="'+added_group_id+'"]').attr('attr-group-status', 0)
+            // update
+            update_group_orders($(event.to))
+        }
+    })
+}
+
+/* ----------------------------- *\
+    Update group orders
+\* ----------------------------- */ 
+function update_group_orders($current_list){
+    // get format: "id:status:order", .... And enumerate group order attr
+    let orders_map = [] 
+    order_idx = 0
+    $current_list.find('.groups-list__group').each(function(){
+        // enumerate group orders
+        $(this).attr('attr-group-order', order_idx)
+        // append orders_map
+        orders_map.push(String($(this).attr('attr-group-id'))+':'+String($(this).attr('attr-group-status'))+':'+String(order_idx))
+        order_idx++
+    })
+
+    // if orders_map is not empty
+    if (orders_map.length !== 0){
+        // update
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: {
+                'mission': 'update_orders',
+                'status': status,
+                'orders_map': String(orders_map),
+            },
+            dataType: "json",
+            success: function(response){
+                if (response == "fail"){
+                    alert('順序或狀態更新失敗')
+                }
+            },
+            beforeSend: function(){},
+        }).done(function(){}).fail(function(){})
+        return false
+    }
+}
+
+/* ----------------------------- *\
+    Edit group
+\* ----------------------------- */
+// edit btn transfer data to pop up panel
+$(document).on('click', '[attr-pop-up="pop-up-edit-group"]', function(){
+    let $current_group = $(this).parents('.groups-list__group')
+    let $edit_group_status = $('#edit-group-status')
+    let $edit_group_name = $('#edit-group-name')
+    let $edit_group_submit = $('#edit-group-submit')
+    
+    // fill input with current group infomations
+    let status_map = {
+        0: "Private",
+        1: "Public",
+    }
+    current_status = $current_group.attr('attr-group-status')
+    $edit_group_status.find('option').removeAttr('selected')
+    $edit_group_status.find('option[value="'+current_status+'"]').attr('selected', 'selected')
+    $edit_group_status.siblings('.select__group').find('.select__item').removeClass('selected')
+    $edit_group_status.siblings('.select__group').find('.select__item[attr-value="'+current_status+'"]').addClass('selected')
+    $edit_group_status.siblings('.select__current-text').text(status_map[current_status])
+    $edit_group_name.val($current_group.find('.name').text())
+
+    // get current value, ready to submit
+    $edit_group_submit.attr('attr-group-id', $current_group.attr('attr-group-id'))
+})
+// edit group submit
+$('#edit-group-submit').on('click', function(){
+    edit_group($(this).attr('attr-group-id'), $('#edit-group-name').val(), $('#edit-group-status').val())
+    $(this).removeAttr('attr-group-id')
+})
+function edit_group(id, name, status){
+    $.ajax({
+        type: "POST",
+        url: "",
+        data: {
+            'mission': 'edit',
+            'id': id,
+            'name': name,
+            'status': status,
+        },
+        success: function(response){
+            if (response == "fail"){
+                alert('編輯失敗')
+            } else {
+                edit_group_info = $.parseJSON(response)
+                $edit_group = $('.groups-list__group[attr-group-id="'+edit_group_info.id+'"]')
+                
+                // change name
+                $edit_group.find('.name').html(edit_group_info.name)
+                
+                // update order
+                let old_group_status = $edit_group.attr('attr-group-status')
+                update_group_orders($('#group-status-'+old_group_status))
+
+                // if status changes, group need to move
+                if (old_group_status != edit_group_info.status){
+                    // update status attr
+                    $edit_group.attr('attr-group-status', edit_group_info.status)
+
+                    // move to new status area
+                    $edit_group.parent().appendTo('#group-status-'+edit_group_info.status)
+
+                    // update order
+                    update_group_orders($('#group-status-'+edit_group_info.status))
+                }
+            }
+        },
+        beforeSend: function(){},
+    }).done(function(){}).fail(function(){})
+    return false
+}
+
+/* ----------------------------- *\
+    Create group
+\* ----------------------------- */
+$('#create-group-submit').on('click', function(){
+    create_group($('#create-group-name').val(), $('#create-group-status').val())
+    $('#create-group-name').val('')
+})
+function create_group(name, status){
+    $.ajax({
+        type: "POST",
+        url: "",
+        data: {
+            'mission': 'create',
+            'name': name,
+            'status': status,
+        },
+        success: function(response){
+            if (response == "fail"){
+                alert('建立失敗，可能因為重複命名')
+            } else {
+                // create item temp
+                created_group_info = $.parseJSON(response)
+                let group_template = `
+                    <div class="col-lg-4">
+                        <div class="groups-list__group" attr-group-id="`+created_group_info.id+`" attr-group-status="`+created_group_info.status+`" attr-group-order="9999">
+                            <i class="icon-folder"></i>
+                            <a class="content" href="./group/`+created_group_info.id+`">
+                                <h3 class="name">`+created_group_info.name+`</h3>
+                            </a>
+                            <button id="" class="more-operator pop-up-trigger icon-btn toggle-trigger">
+                                <i class="icon-more"></i>
+                            </button>
+                            <ul class="groups-list__group-op-list toggle-content">
+                                <li><a class="pop-up-trigger" attr-pop-up="pop-up-edit-group">Edit</a></li>
+                                <li><a class="pop-up-trigger u-color-error" attr-pop-up="pop-up-delete-group">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>`
+                $('#group-status-'+created_group_info.status).append(group_template)
+
+                // update order
+                update_group_orders($('#group-status-'+created_group_info.status))
+
+                // reset ui: popup and toggle
+                ui_set_toggle()
+                ui_set_pop_up()
+            }
+        },
+        beforeSend: function(){},
+    }).done(function(){}).fail(function(){})
+    return false
+}
+
+/* ----------------------------- *\
+    Delete group
+\* ----------------------------- */
+$(document).on('click', '[attr-pop-up="pop-up-delete-group"]', function(){
+    $('#delete-group-submit').attr('attr-group-id', $(this).parents('.groups-list__group').attr('attr-group-id'))
+})
+$('#delete-group-submit').on('click', function(){
+    delete_group($(this).attr('attr-group-id'))
+    $(this).removeAttr('attr-group-id')
+})
+function delete_group(id){
+    $.ajax({
+        type: "POST",
+        url: "",
+        data: {
+            'mission': 'delete',
+            'id': id,
+        },
+        success: function(response){
+            if (response == 'fail'){
+                alert('刪除失敗')
+            } else {
+                deleted_group_info = $.parseJSON(response)
+                $('.groups-list__group[attr-group-id="'+deleted_group_info.id+'"]').parent().remove()
+            }
+        },
+        beforeSend: function(){},
+    }).done(function(){}).fail(function(){})
+    return false
+}
+</script>
+{% endif %}
+{% endblock js %}

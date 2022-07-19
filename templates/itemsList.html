@@ -1,0 +1,335 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block css_special %}
+{% endblock css_special %}
+
+{% block header %}
+<header class="header">
+    <div class="navbar">
+        <!-- Start breadcrumbs -->
+        <div class="breadcrumbs">
+            <div class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="{% url 'mdpage-overview' %}">
+                    <i class="icon-home"></i>
+                    <span>Home</span>
+                </a>
+                <i class="icon-next"></i>
+            </div>
+            <div class="breadcrumbs__item">
+                <a class="breadcrumbs__link active" href="">
+                    <i class="icon-folder"></i>
+                    <span>{{ group }}</span>
+                </a>
+                <i class="icon-next"></i>
+            </div>
+        </div>
+        <!-- End breadcrumbs -->
+
+        <!-- Start authentication -->
+        <div class="inline-group navbar__item-right">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="icon-btn">
+                    <i class="icon-logout"></i>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}?next={{ request.path }}" class="icon-btn">
+                    <i class="icon-login"></i>
+                </a>
+            {% endif %}
+        </div>
+        <!-- End authentication -->
+    </div>
+</header>
+{% endblock header %}
+
+{% block main %}
+<!-- Start main -->
+<section class="main page-list">
+    <div class="container">
+        <div class="items-list" id="listjs">
+            <div class="inline-group u-mb-32">
+                <h1 class="items-list__name">{{ group }}</h1>
+                {% if request.user.is_authenticated %}
+                <button class="pop-up-trigger btn icon-btn icon-btn--circle inline-group__item-right" attr-pop-up="pop-up-create-item">
+                    <i class="icon-plus"></i>
+                    <span class="text">Create Item</span>
+                </button>
+                {% endif %}
+            </div>
+            <div class="items-list__header inline-group">
+                <div class="search inline-group__filler">
+                    <input type="text" class="search__input listjs-search" placeholder="Search">
+                    <i class="icon-search"></i>
+                </div>
+                <button class="btn listjs-sort" data-sort="name">
+                    <span>Sort by Name</span>
+                    <i class="icon-asc"></i>
+                    <i class="icon-desc"></i>
+                </button>
+                <button class="btn listjs-sort" data-sort="timestamp">
+                    <span>Sort by Update</span>
+                    <i class="icon-asc"></i>
+                    <i class="icon-desc"></i>
+                </button>
+            </div>
+            <ul class="items-list__list listjs-list">
+                {% if items %}
+                    {% for item in items %}
+                    <li class="items-list__item">
+                        <a class="detail-link" href="{% url 'mdpage-itemDetail' item.id %}">
+                            <div>
+                                <p class="itemId" style="display: none;">{{ item.id }}</p>
+                                <h3 class="name">{{ item.name }}</h3>
+                                <p class="timestamp">{{ item.updated_on | date:'Y-m-d H:i'}}</p>
+                                <div class="tags">{{ item.tags }}</div>
+                            </div>
+                        </a>
+                        <div class="operators inline-group">
+                            {% if request.user.is_authenticated %}
+                            <a class="editor-link icon-btn icon-btn--circle" href="{% url 'mdpage-itemEditor' item.id %}">
+                                <i class="icon-edit"></i>
+                            </a>
+                            <button class="pop-up-trigger icon-btn icon-btn--circle" attr-pop-up="pop-up-delete">
+                                <i class="icon-delete"></i>
+                            </button>
+                            {% else %}
+                            <a class="icon-btn icon-btn--circle" href="{% url 'mdpage-itemDetail' item.id %}">
+                                <i class="icon-view"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <!-- init item template: BUG from listjs -->
+                    <li id="listjs-init-item" class="items-list__item">
+                        <a class="detail-link" href="">
+                            <div>
+                                <p class="itemId" style="display: none;"></p>
+                                <h3 class="name"></h3>
+                                <p class="timestamp"></p>
+                            </div>
+                        </a>
+                        <div class="operators inline-group">
+                            <a class="editor-link icon-btn icon-btn--circle" href="">
+                                <i class="icon-edit"></i>
+                            </a>
+                            <button class="pop-up-trigger icon-btn icon-btn--circle" attr-pop-up="pop-up-delete">
+                                <i class="icon-delete"></i>
+                            </button>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- End main -->
+
+<!-- Start create item pop-up -->
+{% if request.user.is_authenticated %}
+<div class="pop-up" id="pop-up-create-item">
+    <div class="pop-up__mask pop-up__func-close"></div>
+    <div class="pop-up__panel">
+        <button class="pop-up__func-close pop-up__close icon-btn">
+            <i class="icon-cancel"></i>
+        </button>
+        <div class="pop-up__content">
+            <h2 class="pop-up__title">Create a new item!</h2>
+            <div class="inline-group">
+                <input id="create-item-name" type="text" placeholder="Name">
+                <button id="create-item-submit" class="btn">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- Start create pop-up -->
+
+<!-- Start delete item pop-up -->
+{% if request.user.is_authenticated %}
+<div class="pop-up" id="pop-up-delete">
+    <div class="pop-up__mask pop-up__func-close"></div>
+    <div class="pop-up__panel">
+        <button class="pop-up__func-close pop-up__close icon-btn">
+            <i class="icon-cancel"></i>
+        </button>
+        <div class="pop-up__content">
+            <h2 class="pop-up__title">Are you sure to delete this item?</h2>
+            <div class="inline-group inline-group--center">
+                <button id="delete-item-submit" class="btn btn--error pop-up__func-close" attr-delete-id="">Delete</button>
+                <button class="btn pop-up__func-close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- Start delete pop-up -->
+{% endblock main %}
+
+
+{% block js %}
+<script src="{% static 'vendor/listjs/list.min.js' %}"></script>
+<script>
+/* ----------------------------- *\
+    Tags
+\* ----------------------------- */
+// render tags to structure
+$('.items-list__item .tags').each(function(){
+    tags = $(this).text().split(',')
+    if (tags[0] != ''){
+        $(this).html('')
+        for (i in tags){
+            $(this).append('<code class="tag">'+tags[i]+'</code>')
+        }
+    } else $(this).remove()
+})
+
+/* --------------------------------------- *\
+	Initialize listjs
+\* --------------------------------------- */
+// options
+let options = {
+    valueNames: ['itemId', 'name', 'timestamp', 'tags'],
+    listClass: 'listjs-list',
+    searchClass: 'listjs-search',
+    sortClass: 'listjs-sort',
+}
+
+// init listjs object
+let itemsList = new List('listjs', options)
+itemsList.sort("timestamp", {order: 'desc'})
+itemsList.update()
+
+// check list empty
+check_list_empty()
+
+/* ----------------------------- *\
+    Check every updates
+\* ----------------------------- */
+itemsList.on('updated', function(){
+    check_list_empty()
+})
+function check_list_empty(){
+    // remove init template every time
+    $('#listjs-init-item').remove()
+    // check if list is empty, render style
+    if (itemsList.size() == 0 || (itemsList.size() == 1 && $('.items-list__list').is(':empty'))){
+        $('.items-list__list').append('<p class="no-items-placeholder u-text-center">No items in this group.</p>')
+        // $('.listjs-search').addClass('disabled')
+        // $('.listjs-sort').addClass('disabled')
+        $('.listjs-sort').removeClass('asc').removeClass('desc')
+    } else {
+        // $('.listjs-search').removeClass('disabled')
+        // $('.listjs-sort').removeClass('disabled')
+    }
+}
+</script>
+{% if request.user.is_authenticated %}
+<script>
+/* ----------------------------- *\
+    Create item
+\* ----------------------------- */
+// Create item btn event
+$('#create-item-submit').on('click', function(){
+    $create_item_pop_up = $(this).parents('.pop-up')
+    $create_item_pop_up.find('.alert').remove()
+    let create_item_name = $('#create-item-name').val()
+    if (create_item_name == ''){
+        $create_item_pop_up.find('.pop-up__panel').append(`
+            <p class="alert u-mt-8" style="color: var(--color-default-error);">
+                Empty item name!
+            </p>
+        `)
+    } else {
+        $create_item_pop_up.find('.alert').remove()
+        $create_item_pop_up.removeClass('active')
+        create_item(create_item_name)
+        $('#create-item-name').val('')
+    }
+})
+
+// create item api
+function create_item(create_item_name){
+    $.ajax({
+        type: "POST",
+        url: "",
+        data: {
+            'mission': 'create',
+            'name': create_item_name,
+        },
+        success: function(response){
+            if (response == "Repeat the name"){
+                alert('重複命名')
+            } else {
+                // update itemslist
+                new_item_info = $.parseJSON(response)
+                itemsList.add({
+                    itemId: new_item_info.id,
+                    name: new_item_info.name,
+                    timestamp: new_item_info.created_on,
+                })
+                itemsList.sort("timestamp", {order: 'desc'})
+
+                // refresh item links
+                refreshItemLinks()
+
+                // reset delete pop up
+                ui_set_pop_up()
+            }
+        },
+        beforeSend: function(){},
+    }).done(function(){}).fail(function(){})
+    return false
+}
+
+// refresh item links
+function refreshItemLinks(){
+    $('.items-list__item').each(function(){
+        id = $(this).find('.itemId').text()
+        // detail view link
+        $(this).find('.detail-link').attr('href', '/item/'+id+'/')
+        // editor view link
+        $(this).find('.editor-link').attr('href', '/item/'+id+'/edit/')
+    })
+}
+
+/* ----------------------------- *\
+    Delete item
+\* ----------------------------- */
+// delete pop-up
+$(document).on('click', '[attr-pop-up="pop-up-delete"]', function(){
+    let delete_item_id = $(this).parents('.items-list__item').find('.itemId').text()
+    $('#delete-item-submit').attr('attr-delete-id', delete_item_id)
+})
+
+// Remove item btn event
+$('#delete-item-submit').on('click', function(){
+    delete_item($(this).attr('attr-delete-id'))
+})
+
+// delete item api
+function delete_item(delete_item_id){
+    $.ajax({
+        type: "POST",
+        url: "",
+        data: {
+            'mission': 'delete',
+            'id': delete_item_id,
+        },
+        success: function(response){
+            if (response == 'fail'){
+                alert('刪除失敗')
+            } else {
+                // delete item
+                itemsList.remove('itemId', delete_item_id)
+            }
+        },
+        beforeSend: function(){},
+    }).done(function(){}).fail(function(){})
+    return false
+}
+</script>
+{% endif %}
+{% endblock js %}

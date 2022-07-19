@@ -1,0 +1,211 @@
+/* ------------------------------- *\ 
+    Google fonts
+\* ------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* ------------------------------- *\ 
+    root
+\* ------------------------------- */
+:root{
+    /* ------------------------------- *\ 
+        Color: Default (Dark) theme
+    \* ------------------------------- */
+    /* primary colors */
+    --color-default-primary: #FFCC66;
+    /* background colors */
+    --color-default-bg-1: #1F2430;
+    --color-default-bg-2: #232834;
+    /* functional colors */
+    --color-default-info: #5CCFE6;
+    --color-default-success: #BAE67E;
+    --color-default-success-light: #CfEdA4;
+    --color-default-success-dark: #A9E05E;
+    --color-default-alert: #FFD580;
+    --color-default-error: #F28779;
+    --color-default-selection: #5e76a7;
+    --color-default-shine: rgba(255, 204, 102, 0.2);
+    /* neutral colors */
+    --color-default-gray-1: #fefefe;
+    --color-default-gray-2: #F8F9Fa;
+    --color-default-gray-3: #E9ECEF;
+    --color-default-gray-4: #DEE2E6;
+    --color-default-gray-5: #CED4DA;
+    --color-default-gray-6: #ADB5BD;
+    --color-default-gray-7: #6C757D;
+    --color-default-gray-8: #495057;
+    --color-default-gray-9: #343A40;
+    --color-default-gray-10: #212529;
+    --color-default-gray-11: #191c21;
+
+    /* ------------------------------- *\ 
+        Color: code theme (ayu)
+    \* ------------------------------- */
+    --color-syntax-tag: #5CCFE6;
+    --color-syntax-func: #FFD580;
+    --color-syntax-entity: #73D0FF;
+    --color-syntax-string: #BAE67E;
+    --color-syntax-regexp: #95E6CB;
+    --color-syntax-markup: #F28779;
+    --color-syntax-keyword: #FFA759;
+    --color-syntax-special: #FFE6B3;
+    --color-syntax-comment: #5C6773;
+    --color-syntax-constant: #D4BFFF;
+    --color-syntax-operator: #F29E74;
+    --color-syntax-error: #FF3333;
+
+    /* ------------------------------- *\ 
+        Font
+    \* ------------------------------- */
+    --font-family-sans-serif: 'Roboto', arial, '微軟正黑體', sans-serif;
+    --font-family-serif: 'Noto Serif', '微軟正黑體', serif;
+    --font-family-monospace: ;
+    --font-size-base: 16px;
+
+    /* ------------------------------- *\ 
+        Breakpoint
+    \* ------------------------------- */
+    --breakpoint-sm: ;
+    --breakpoint-md: ;
+    --breakpoint-lg: ;
+    --breakpoint-xl: ;
+}
+
+/* ------------------------------- *\ 
+    Global
+\* ------------------------------- */
+/* for all */
+* {
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* html, body */
+html, body{
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: var(--font-family-sans-serif);
+}
+
+/* ------------------------------- *\ 
+    Utility
+\* ------------------------------- */
+/* bg colors */
+.u-bgc-primary {background-color: var(--color-default-primary) !important;}
+.u-bgc-bg-1 {background-color: var(--color-default-bg-1) !important;}
+.u-bgc-bg-2 {background-color: var(--color-default-bg-2) !important;}
+.u-bgc-info {background-color: var(--color-default-info) !important;}
+.u-bgc-success {background-color: var(--color-default-success) !important;}
+.u-bgc-alert {background-color: var(--color-default-alert) !important;}
+.u-bgc-error {background-color: var(--color-default-error) !important;}
+.u-bgc-selection {background-color: var(--color-default-selection) !important;}
+
+/* text colors */
+.u-color-primary {color: var(--color-default-primary) !important;}
+.u-color-bg-1 {color: var(--color-default-bg-1) !important;}
+.u-color-bg-2 {color: var(--color-default-bg-2) !important;}
+.u-color-info {color: var(--color-default-info) !important;}
+.u-color-success {color: var(--color-default-success) !important;}
+.u-color-alert {color: var(--color-default-alert) !important;}
+.u-color-error {color: var(--color-default-error) !important;}
+.u-color-selection {color: var(--color-default-selection) !important;}
+
+/* text align */
+.u-text-center{text-align: center !important;}
+.u-text-left{text-align: left !important;}
+.u-text-right{text-align: right !important;}
+
+/* margins */
+.u-m-4{margin: 4px !important;}
+.u-m-8{margin: 8px !important;}
+.u-m-16{margin: 16px !important;}
+.u-m-24{margin: 24px !important;}
+.u-m-32{margin: 32px !important;}
+.u-m-48{margin: 48px !important;}
+.u-m-64{margin: 64px !important;}
+.u-mt-4{margin-top: 4px !important;}
+.u-mt-8{margin-top: 8px !important;}
+.u-mt-16{margin-top: 16px !important;}
+.u-mt-24{margin-top: 24px !important;}
+.u-mt-32{margin-top: 32px !important;}
+.u-mt-48{margin-top: 48px !important;}
+.u-mt-64{margin-top: 64px !important;}
+.u-mb-4{margin-bottom: 4px !important;}
+.u-mb-8{margin-bottom: 8px !important;}
+.u-mb-16{margin-bottom: 16px !important;}
+.u-mb-24{margin-bottom: 24px !important;}
+.u-mb-32{margin-bottom: 32px !important;}
+.u-mb-48{margin-bottom: 48px !important;}
+.u-mb-64{margin-bottom: 64px !important;}
+.u-ml-4{margin-left: 4px !important;}
+.u-ml-8{margin-left: 8px !important;}
+.u-ml-16{margin-left: 16px !important;}
+.u-ml-24{margin-left: 24px !important;}
+.u-ml-32{margin-left: 32px !important;}
+.u-ml-48{margin-left: 48px !important;}
+.u-ml-64{margin-left: 64px !important;}
+.u-mr-4{margin-right: 4px !important;}
+.u-mr-8{margin-right: 8px !important;}
+.u-mr-16{margin-right: 16px !important;}
+.u-mr-24{margin-right: 24px !important;}
+.u-mr-32{margin-right: 32px !important;}
+.u-mr-48{margin-right: 48px !important;}
+.u-mr-64{margin-right: 64px !important;}
+
+/* paddings */
+.u-p-4{padding: 4px !important;}
+.u-p-8{padding: 8px !important;}
+.u-p-16{padding: 16px !important;}
+.u-p-24{padding: 24px !important;}
+.u-p-32{padding: 32px !important;}
+.u-p-48{padding: 48px !important;}
+.u-p-64{padding: 64px !important;}
+.u-pt-4{padding-top: 4px !important;}
+.u-pt-8{padding-top: 8px !important;}
+.u-pt-16{padding-top: 16px !important;}
+.u-pt-24{padding-top: 24px !important;}
+.u-pt-32{padding-top: 32px !important;}
+.u-pt-48{padding-top: 48px !important;}
+.u-pt-64{padding-top: 64px !important;}
+.u-pb-4{padding-bottom: 4px !important;}
+.u-pb-8{padding-bottom: 8px !important;}
+.u-pb-16{padding-bottom: 16px !important;}
+.u-pb-24{padding-bottom: 24px !important;}
+.u-pb-32{padding-bottom: 32px !important;}
+.u-pb-48{padding-bottom: 48px !important;}
+.u-pb-64{padding-bottom: 64px !important;}
+.u-pl-4{padding-left: 4px !important;}
+.u-pl-8{padding-left: 8px !important;}
+.u-pl-16{padding-left: 16px !important;}
+.u-pl-24{padding-left: 24px !important;}
+.u-pl-32{padding-left: 32px !important;}
+.u-pl-48{padding-left: 48px !important;}
+.u-pl-64{padding-left: 64px !important;}
+.u-pr-4{padding-right: 4px !important;}
+.u-pr-8{padding-right: 8px !important;}
+.u-pr-16{padding-right: 16px !important;}
+.u-pr-24{padding-right: 24px !important;}
+.u-pr-32{padding-right: 32px !important;}
+.u-pr-48{padding-right: 48px !important;}
+.u-pr-64{padding-right: 64px !important;}
+
+/* font size */
+.u-fs-14{font-size: 14px !important;}
+.u-fs-16{font-size: 16px !important;}
+.u-fs-18{font-size: 18px !important;}
+.u-fs-20{font-size: 20px !important;}
+.u-fs-22{font-size: 22px !important;}
+.u-fs-24{font-size: 24px !important;}
+.u-fs-28{font-size: 28px !important;}
+.u-fs-30{font-size: 30px !important;}
+.u-fs-34{font-size: 34px !important;}
+.u-fs-36{font-size: 36px !important;}
+.u-fs-38{font-size: 38px !important;}
+.u-fs-40{font-size: 40px !important;}
+.u-fs-44{font-size: 44px !important;}
+.u-fs-48{font-size: 48px !important;}
+.u-fs-56{font-size: 56px !important;}
+.u-fs-64{font-size: 64px !important;}
+.u-fs-72{font-size: 72px !important;}
+.u-fs-80{font-size: 80px !important;}

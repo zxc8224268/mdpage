@@ -1,0 +1,39 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block css_special %}
+{% endblock css_special %}
+
+{% block header %}
+{% endblock header %}
+
+{% block main %}
+<section class="main page-login">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8">
+                <form class="login-form" method="post"> {% csrf_token %}
+                    <h1 class="heading-1 u-text-center">Log In</h1>
+                    <!-- {{ form.non_field_errors }} -->
+                    <div class="login-form__item">
+                        <!-- <label for="{{ form.username.id_for_label }}">Username:</label> -->
+                        {{ form.username }}
+                        <!-- {{ form.username.errors }} -->
+                    </div>
+                    <div class="login-form__item">
+                        <!-- <label for="{{ form.password.id_for_label }}">Password:</label> -->
+                        {{ form.password }}
+                        <!-- {{ form.password.errors }} -->
+                    </div>
+                    <div class="login-form__item inline-group inline-group--center">
+                        <button class="btn" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}
+
+{% block js %}
+{% endblock js %}

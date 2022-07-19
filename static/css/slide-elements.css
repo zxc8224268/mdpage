@@ -1,0 +1,458 @@
+/* ------------------------------- *\
+    Layout: default
+\* ------------------------------- */
+.slide-content .slides,
+.slide-content .slide {
+    background-color: var(--color-default-bg-1);
+}
+.slide-content .slides {
+    position: relative;
+    height: inherit;
+    width: 100%;
+}
+.slide-content .slide{
+    border: 1px solid var(--color-default-gray-7);
+    width: 100%;
+    padding-top: 56.25%;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.slide-content .slide__main{
+    display: inline-flex !important;
+    flex-direction: column;
+    padding-top: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: top left;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+}
+.slide-content .slide-row{
+    display: inline-flex;
+    width: 100%;
+    padding: 0 40px;
+    margin-bottom: auto;
+}
+.slide-content .slide-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    border-right: 1px solid var(--color-default-gray-5);
+    width: 100%;
+}
+.slide-content .slide-col:last-child{
+    border-right: 0;
+}
+.slide-content .slide-col > :last-child{
+    margin-bottom: 0 !important;
+}
+.slide-content .slide-row .slide-content .slide-col{
+    padding-bottom: 40px;
+}
+.slide-content .slide-footer{
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* ------------------------------- *\
+    Layout: fullscreen
+\* ------------------------------- */
+.layout-preview.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+.layout-preview.fullscreen .slide{
+    border: 0px;
+    margin-bottom: 0;
+    border-radius: 0;
+    cursor: url('../images/common/red_cursor.png') 4 4,pointer;
+}
+.layout-preview.fullscreen .slide__main{
+    transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ------------------------------- *\
+    Text
+\* ------------------------------- */
+/* heading */
+.slide-content .slide h1{
+    font-size: 56px;
+    line-height: 64px;
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+    color: var(--color-default-primary);
+}
+.slide-content .slide h2{
+    font-size: 52px;
+    line-height: 64px;
+    letter-spacing: 1.2px;
+    margin-bottom: 40px;
+    padding-left: 40px;
+}
+.slide-content .slide h2:before{
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 8px;
+    height: 38px;
+    background-color: var(--color-default-primary);
+}
+.slide-content .slide h3{
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 1.2px;
+    margin-bottom: 32px;
+    color: var(--color-default-primary);
+    /* text-decoration: underline; */
+    border-bottom: 1px solid var(--color-default-primary);
+    padding-bottom: 8px;
+}
+.slide-content .slide h4{
+    font-size: 34px;
+    line-height: 48px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+}
+.slide-content .slide h5{
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.slide-content .slide h6:before{
+    content: 'H6 is not defined to be use.'
+}
+
+/* Paragraph */
+.slide-content .slide p{
+    font-size: 32px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Bold */
+.slide-content strong {
+    font-weight: 600;
+}
+
+/* Highlight */
+.slide-content strong em{
+    font-style: normal;
+    font-weight: 600;
+    color: var(--color-default-primary);
+    text-decoration: none;
+}
+
+/* Anchor */
+.slide-content .slide a {
+    text-decoration: none;
+    color: var(--color-default-success);
+}
+.slide-content .slide a:hover{
+    text-decoration: underline;
+}
+
+/* ------------------------------- *\
+    Horizontal rule
+\* ------------------------------- */
+.slide-content .slide hr {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--color-default-gray-5);
+    margin-top: 0px;
+    margin-bottom: 24px;
+}
+.slide-content .slide h3 ~ hr {
+    margin-top: -16px;
+}
+
+/* ------------------------------- *\
+    Blockquote
+\* ------------------------------- */
+.slide-content .slide blockquote{
+    background-color: var(--color-default-bg-2);
+    border: 1px solid var(--color-default-gray-8);
+    border-left: 4px solid var(--color-default-primary);
+    padding: 32px;
+    overflow-wrap: break-word;
+    margin: 0;
+    margin-bottom: 24px;
+}
+.slide-content .slide blockquote > :last-child{
+    margin-bottom: 0 !important;
+}
+
+/* ------------------------------- *\
+    List
+\* ------------------------------- */
+/* List common */
+.slide-content .slide ul, .slide-content .slide ol{
+    padding-left: 56px;
+    margin-bottom: 24px;
+}
+.slide-content .slide li{
+    font-size: 32px;
+    overflow-wrap: break-word;
+    line-height: 48px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+.slide-content .slide li:last-child {
+    margin-bottom: 0;
+}
+
+/* List first order */
+.slide-content .slide .slide__main ul > li > p, 
+.slide-content .slide .slide__main ol > li > p{
+    margin-bottom: 0px;
+}
+
+/* List second order */
+.slide-content .slide .slide__main ul > li > ul,
+.slide-content .slide .slide__main ol > li > ol,
+.slide-content .slide .slide__main ol > li > ul,
+.slide-content .slide .slide__main ul > li > ol{
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+.slide-content .slide .slide__main ul > li > ul:last-child,
+.slide-content .slide .slide__main ol > li > ol:last-child,
+.slide-content .slide .slide__main ol > li > ul:last-child,
+.slide-content .slide .slide__main ul > li > ol:last-child {
+    margin-bottom: 0;
+}
+
+/* Unorder list */
+.slide-content .slide ul li::marker{
+    color: var(--color-default-primary);
+}
+
+/* Order list */
+.slide-content .slide ol {
+    list-style: none;
+    counter-reset: list;
+}
+.slide-content .slide ol > li:before {
+    position: absolute;
+    top: 0px;
+    right: calc(100% + 16px);
+    content: counter(list) ".";
+    counter-increment: list;
+    color: var(--color-default-primary);
+}
+
+/* check list */
+.slide-content .slide ul .task-list-item input {
+    border: 2px solid var(--color-default-primary);
+    width: 24px;
+    height: 24px;
+}
+
+/* ------------------------------- *\
+    Code
+\* ------------------------------- */
+.slide-content .code-toolbar {
+    margin-bottom: 24px;
+}
+.slide-content pre[class*="language-"] {
+    border-radius: 8px;
+}
+.slide-content code[class*="language-"],
+.slide-content pre[class*="language-"] {
+    font-size: 26px;
+}
+.slide-content div.code-toolbar > .toolbar {
+    line-height: 50px;
+}
+.slide-content div.code-toolbar > .toolbar button {
+    font-size: 26px;
+    padding: 6px 12px;
+}
+.slide-content div.code-toolbar > .toolbar span{
+    font-size: 26px;
+    line-height: 28px;
+    margin-right: 8px;
+}
+
+/* ------------------------------- *\
+    Image
+\* ------------------------------- */
+.slide-content .slide .image-container{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 32px;
+}
+.slide-content .slide .image-container:before{
+    content: '';
+}
+.slide-content .slide .image-container .image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* background-color: var(--color-default-gray-1); */
+    border-radius: 8px;
+}
+
+/* ------------------------------- *\
+    Table
+\* ------------------------------- */
+/* Table */
+.slide-content .slide table{
+    white-space: nowrap;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+.slide-content .slide tr{
+    line-height: 56px;
+}
+.slide-content .slide thead{
+    overflow: hidden;
+    border-bottom: 2px solid var(--color-default-primary);
+}
+.slide-content .slide thead th{
+    border: 0px;
+    text-align: left;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+.slide-content .slide tbody td{
+    border: 0px;
+    padding: 8px 16px;
+    font-size: 32px;
+}
+
+/* ------------------------------- *\
+    Equation
+\* ------------------------------- */
+.slide-content .MathJax{
+    outline: none;
+}
+.slide-content mjx-container[jax="CHTML"][display="true"]{
+    margin: 0 !important;
+    margin-bottom: 24px !important;
+}
+.slide-content p mjx-container[jax="CHTML"][display="true"]:last-child{
+    margin: 0 !important;
+}
+.slide-content mjx-mtd{
+    padding: 0.28em !important;
+}
+
+/* ------------------------------- *\
+    Slide cover
+\* ------------------------------- */
+.slide-content .slide.cover .slide__main{
+    flex-direction: row;
+    padding-top: 0;
+}
+.slide-content .slide.cover .slide-row{
+    margin-bottom: initial;
+}
+.slide-content .slide.cover h1{
+    padding-bottom: 48px;
+}
+.slide-content .slide.cover h1:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 8px;
+    background-color: var(--color-default-primary);
+}
+.slide-content .slide.cover h3{
+    color: var(--color-default-gray-4);
+    border: 0;
+}
+
+/* ------------------------------- *\
+    Slide back cover
+\* ------------------------------- */
+.slide-content .slide.back-cover .slide__main{
+    flex-direction: row;
+    padding-top: 0;
+}
+.slide-content .slide.back-cover .slide-row{
+    margin-bottom: initial;
+}
+.slide-content .slide.back-cover h1{
+    text-align: center;
+}
+
+/* ------------------------------- *\
+    Slide seperator
+\* ------------------------------- */
+.slide-content .slide-seperator {
+    text-align: center;
+}
+.slide-content .slide-seperator span{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 100px;
+    color: var(--color-default-gray-1);
+}
+.slide-content .slide-seperator h1{
+    font-size: 72px;
+}
+
+/* ------------------------------- *\
+    Footer style
+\* ------------------------------- */
+/* footer */
+.slide-content .slide-footer{
+    background-color: var(--color-default-bg-2);
+    padding: 24px 80px;
+}
+/* footer list */
+.slide-content .slide-footer ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 !important;
+}
+.slide-content .slide-footer ul li{
+    font-size: 22px;
+    line-height: 32px;
+    color: var(--color-default-gray-6);
+    margin-bottom: 0;
+}
+
+/* ------------------------------- *\
+    Page number
+\* ------------------------------- */
+.slide-content .slide-page-number{
+    position: absolute;
+    right: 48px;
+    bottom: 28px;
+    font-family: Arial;
+    font-size: 28px;
+    line-height: 24px;
+    text-align: right;
+    color: var(--color-default-gray-4);
+}
+:is(.slide-content .slide.cover, .slide-content .slide.back-cover) .slide-page-number{
+    display: none;
+}

@@ -1,0 +1,160 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block css_special %}
+<!-- codemirror -->
+<link rel="stylesheet" href="{% static 'vendor/codemirror/lib/codemirror.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/codemirror/addon/fold/foldgutter.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/codemirror/addon/dialog/dialog.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/codemirror/theme/ayu-mirage.css' %}">
+<!-- prism -->
+<link rel="stylesheet" href="{% static 'vendor/prism/prism.css' %}">
+<!-- slick -->
+<link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}">
+
+<!-- note style -->
+<link rel="stylesheet" href="{% static 'css/note-elements.css' %}">
+<!-- slide style -->
+<link rel="stylesheet" href="{% static 'css/slide-elements.css' %}">
+<!-- theme -->
+<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+{% endblock css_special %}
+
+{% block main %}
+<section class="main page-editor">
+    <!-- Start editor control -->
+    <div class="layout-control">
+        <div class="control-navbar">
+            <div class="item-meta-inputs inline-group">
+                <a class="icon-btn icon-btn--circle" href="{% url 'mdpage-overview' %}">
+                    <i class="icon-home"></i>
+                </a>
+                <a class="icon-btn icon-btn--circle" href="{% url 'mdpage-itemsList' item.group.id %}">
+                    <i class="icon-folder"></i>
+                </a>
+                <div class="select">
+                    <select id="item-group">
+                        {% for group in own_groups %}
+                            {% if group == item.group %}
+                            <option value="{{ group }}" selected="selected">{{ group }}</option>
+                            {% else %}
+                            <option value="{{ group }}">{{ group }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <input class="inline-group__filler" id="item-name" type="text" value="{{ item.name }}">
+            </div>
+            <h6 class="control-message"></h6>
+            <div class="inline-group control-navbar__item-right">
+                <button class="slide-fullscreen-btn icon-btn icon-btn--circle">
+                    <i class="icon-presentation"></i>
+                </button>
+                <button id="zen-mode-btn" class="icon-btn icon-btn--circle">
+                    <i class="icon-zen"></i>
+                </button>
+                <a class="icon-btn icon-btn--circle" href="{% url 'mdpage-itemDetail' item.id %}">
+                    <i class="icon-view"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End editor control -->
+
+    <!-- Start editor main  -->
+    <div class="layout-main">
+        <div class="layout-split">
+            <div id="split-1" class="layout-codemirror">
+                <div class="codemirror-outer"></div>
+            </div>
+            <div id="split-2" class="layout-preview theme-slide--light-coral">
+                <div class="preview-content"></div>
+                <!-- theme switcher -->
+                <button class="theme-switcher js-theme-switcher">
+                    <div class="controller">
+                    <!-- sun -->
+                    <svg class="icon icon-sun" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:v="https://vecta.io/nano"><path d="M255.996 106c-82.705 0-150 67.295-150 150s67.295 150 150 150 150-67.295 150-150-67.295-150-150-150zm155.7 240c-15.6 27.299-38.699 50.099-66 66l90.3 24.3-24.3-90.3zM255.996 0l-46.199 82.299C224.497 78.1 240.095 76 255.996 76s31.5 2.1 46.2 6.299L255.996 0zm-180 76l24.3 90c15.601-27.301 38.101-49.801 65.4-65.7L75.996 76z"></path><path d="M82.297 209.5l-82 46.5 82 46.5c-4.2-14.7-6.301-30.3-6.301-46.5s2.1-31.8 6.301-46.5zM100.296 346l-24.3 90.3 90.3-24.3c-27.3-15.901-50.399-38.701-66-66zm155.7 90c-16.199 0-31.8-2.1-46.8-6.301l46.8 82.301 46.8-82.301c-15 4.2-30.601 6.301-46.8 6.301zm90.163-335.548a181.09 181.09 0 0 1 65.514 65.596l24.426-90.004-89.94 24.408zm165.544 155.694l-81.951-46.39c3.941 14.786 6.244 30.233 6.244 46.244 0 16.135-2.333 31.703-6.334 46.593l82.041-46.447z"></path></svg>
+                    <!-- moon -->
+                    <svg class="icon icon-moon" fill="#000" viewBox="0 0 312.812 312.812" xmlns="http://www.w3.org/2000/svg" xmlns:v="https://vecta.io/nano"><path d="M305.2 178.159c-3.2-.8-6.4 0-9.2 2-10.4 8.8-22.4 16-35.6 20.8-12.4 4.8-26 7.2-40.4 7.2-32.4 0-62-13.2-83.2-34.4s-34.4-50.8-34.4-83.2c0-13.6 2.4-26.8 6.4-38.8 4.4-12.8 10.8-24.4 19.2-34.4 3.6-4.4 2.8-10.8-1.6-14.4-2.8-2-6-2.8-9.2-2-34 9.2-63.6 29.6-84.8 56.8-20.4 26.8-32.4 60-32.4 96 0 43.6 17.6 83.2 46.4 112s68 46.4 112 46.4c36.8 0 70.8-12.8 98-34 27.6-21.6 47.6-52.4 56-87.6 1.6-5.6-1.6-11.2-7.2-12.4z"></path></svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End editor main -->
+    
+    <!-- Start gallery -->
+    <div class="gallery" style="display: none;">
+        {% for img in imgs %}
+        <div style="width: 100px; height:100px;" attr-image-id="{{ img.id }}">
+            <img src="{{ img.image.url }}" alt="" style="width: 100%;">
+            <button class="delete-image">delete image</button>
+        </div>
+        {% endfor %}
+        <input id="file_name" type="text">
+        <input id="file" type="file">
+    </div>
+    <!-- End gallery -->
+</section>
+{% endblock main %}
+
+{% block footer %}
+<!-- <footer class="footer">footer</footer> -->
+<!-- hidden node -->
+<div class="loaded-item-content" style="display: none;">{{ item.content }}</div>
+<div class="temp-node" style="display: none;"></div>
+{% endblock footer %}
+
+{% block js %}
+<!-- Vendors -->
+<!-- showdown: markdown converter (pre-processing) -->
+<script src="{% static 'vendor/showdown/showdown.min.js' %}"></script>
+<!-- mermaid: for drawing graph (post-processing) -->
+<!-- <script src="{% static 'vendor/mermaid/mermaid.min.js' %}"></script> -->
+<!-- prism: code highlight (post-processing) -->
+<script src="{% static 'vendor/prism/prism.js' %}"></script>
+<!-- codemirror: editor core -->
+<script src="{% static 'vendor/codemirror/lib/codemirror.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/search/searchcursor.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/search/search.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/dialog/dialog.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/edit/matchbrackets.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/edit/closebrackets.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/comment/comment.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/wrap/hardwrap.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/fold/foldcode.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/fold/brace-fold.js' %}"></script>
+<script src="{% static 'vendor/codemirror/addon/display/panel.js' %}"></script>
+<script src="{% static 'vendor/codemirror/mode/markdown/markdown.js' %}"></script>
+<script src="{% static 'vendor/codemirror/keymap/sublime.js' %}"></script>
+<!-- table formatter -->
+<script src="{% static 'vendor/MarkdownTableFormatter/MarkdownTableFormatter.js' %}"></script>
+<!-- split: for resize page -->
+<script src="{% static 'vendor/splitjs/split.min.js' %}"></script>
+<!-- slick: carousel for slide -->
+<script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+<!-- mathjax: latex converter -->
+<script>
+MathJax = {
+    tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']]
+    },
+    CommonHTML: {
+        scale: 300
+    }
+}
+</script>
+<script src="{% static 'vendor/mathjax/tex-mml-chtml.js' %}"></script>
+
+<!-- Custom -->
+<script src="{% static 'js/md_converter.js' %}"></script>
+<script src="{% static 'js/md_slides.js' %}"></script>
+<script src="{% static 'js/md_editor.js' %}"></script>
+{% endblock js %}
+
+
+
+
+
+

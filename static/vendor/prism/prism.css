@@ -1,0 +1,264 @@
+/* PrismJS 1.23.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+c+cpp+cmake+django+docker+git+java+json+json5+latex+markup-templating+powershell+processing+python+sass+scss+shell-session+yaml&plugins=line-numbers+show-language+toolbar+copy-to-clipboard */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * @author Joey Yang
+ */
+
+/* ------------------------------- *\
+	Code container settings
+\* ------------------------------- */
+code{
+    color: var(--color-default-primary);
+    background-color: var(--color-default-bg-2);
+    border: 1px solid var(--color-default-gray-8);
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin: 0px 2px;
+}
+div.code-toolbar {
+    position: relative;
+}
+/* scrollbar */
+div.code-toolbar ::-webkit-scrollbar {
+    height: 8px;
+}
+div.code-toolbar ::-webkit-scrollbar-track {
+    background-color: inherit;
+    border-radius: 3px;
+    /* border: 1px solid #ddd; */
+}
+div.code-toolbar ::-webkit-scrollbar-thumb {
+    background-color: var(--color-default-gray-7);
+    border-radius: 3px;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: var(--color-default-gray-5);
+    border: 0px;
+    background: none;
+    /*text-shadow: 0 1px white;*/
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 16px;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.8;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+    text-shadow: none;
+    background: var(--color-default-selection) !important;
+}
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+    text-shadow: none;
+    background: var(--color-default-selection) !important;
+}
+@media print {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        text-shadow: none;
+    }
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    overflow: auto;
+    border-radius: 4px;
+    padding: 16px;
+    border: 1px solid var(--color-default-gray-8);
+    margin: 0;
+}
+pre[class*="language-"] > code{
+    border: 0;
+}
+code[class*="language-"]{
+    display: block;
+    padding: 0;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: var(--color-default-bg-2);
+}
+
+/* Inline code */
+/*:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}*/
+
+
+/* ------------------------------- *\
+	token settings
+\* ------------------------------- */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--color-default-gray-5);
+}
+.token.punctuation {
+	color: var(--color-default-gray-5);
+}
+.token.namespace {
+	opacity: .7;
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: var(--color-syntax-constant);
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: var(--color-syntax-string);
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: var(--color-syntax-operator);
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: var(--color-syntax-keyword);
+}
+.token.function,
+.token.class-name {
+	color: var(--color-syntax-func);
+}
+.token.regex,
+.token.important,
+.token.variable {
+	color: var(--color-syntax-regexp);
+}
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+.token.entity {
+	cursor: help;
+}
+
+/* ------------------------------- *\
+	Line numbers settings
+\* ------------------------------- */
+pre[class*="language-"].line-numbers {
+	counter-reset: linenumber;
+	padding-left: 56px;
+}
+@media (max-width: 540px){
+	pre[class*="language-"].line-numbers {
+		padding-left: 48px;
+	}
+}
+.line-numbers .line-numbers-rows{
+	display: block;
+	position: absolute;
+	top: 0;
+	right: calc(100% + 16px);
+	border-right: 1px solid var(--color-default-gray-8);
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.line-numbers-rows > span {
+	display: block;
+	counter-increment: linenumber;
+	padding-right: 8px;
+}
+.line-numbers-rows > span:before {
+	content: counter(linenumber);
+	color: #999;
+	display: block;
+	text-align: right;
+}
+
+
+/* ------------------------------- *\
+	Toolbar UI settings
+\* ------------------------------- */
+div.code-toolbar > .toolbar {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	transition: opacity 0.1s;
+	opacity: 0;
+	padding: 12px 15px 12px 15px;
+	line-height: 32px;
+	background-color: var(--color-default-bg-2);
+	border-radius: 8px;
+}
+div.code-toolbar:hover > .toolbar{
+	opacity: 1;
+}
+/* Separate line b/c rules are thrown out if selector is invalid.
+   IE11 and old Edge versions don't support :focus-within. */
+div.code-toolbar:focus-within > .toolbar {
+	opacity: 1;
+}
+div.code-toolbar > .toolbar .toolbar-item {
+	display: inline-block;
+}
+@media (max-width: 540px){
+	div.code-toolbar > .toolbar .toolbar-item:nth-child(1){
+		display: none;
+	}	
+}
+div.code-toolbar > .toolbar button {
+	cursor: pointer;
+	border: 0;
+	font: inherit;
+	line-height: normal;
+	overflow: visible;
+	-webkit-user-select: none; /* for button */
+	-moz-user-select: none;
+	-ms-user-select: none;
+	color: var(--color-default-gray-6);
+	font-size: 14px;
+	font-weight: 800;
+	padding: 4px 8px;
+	background: inherit;
+    border: 1px solid var(--color-default-gray-8);
+	border-radius: 4px;
+	outline: none;
+}
+div.code-toolbar > .toolbar button:hover{
+    border: 1px solid var(--color-default-primary);
+    color: var(--color-default-primary);
+}
+div.code-toolbar > .toolbar span{
+	color: var(--color-default-gray-6);
+	font-size: 14px;
+	line-height: 16px;
+	margin-right: 8px;
+}

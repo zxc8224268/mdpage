@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-TW"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item.name }}</title>
+    <!-- CSS -->
+    <!-- vendor -->
+    <link rel="stylesheet" href="{% static 'vendor/normalize/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap4-grid/bootstrap-grid.css' %}">
+    {% block css_special %}{% endblock %}
+    <!-- custom -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mdpage.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    {% block header %}{% endblock %}
+    {% block main %}{% endblock %}
+    {% block footer %}{% endblock %}
+</div>
+</body>
+</html>
+<!-- Common JS -->
+<script src="{% static 'vendor/jquery/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'vendor/cookie/js.cookie.min.js' %}"></script>
+<script src="{% static 'js/components.js' %}"></script>
+{% block js %}{% endblock %}

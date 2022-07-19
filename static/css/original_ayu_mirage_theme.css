@@ -1,0 +1,39 @@
+/* ------------------------------- *\ 
+    root
+\* ------------------------------- */
+:root{
+    /* original ayu mirage theme */
+    --common-accent: #FFCC66;
+    --common-bg: #1F2430;
+    --common-fg: #CBCCC6;
+    --common-ui: #707A8C;
+
+    --ui-line: #191E2A;
+    --ui-panel-bg: #232834;
+    --ui-panel-shadow: #141925;
+    --ui-panel-border: #101521;
+    --ui-gutter-normal: #707A8C66;
+    --ui-gutter-active: #707A8CCC;
+    --ui-selection-bg: #33415E;
+    --ui-selection-inactive: #323A4C;
+    --ui-selection-border: #323A4C;
+    --ui-guide-active: #707A8CB3;
+    --ui-guide-normal: #707A8C4D;
+    
+    --vcs-added: #A6CC70;
+    --vcs-modified: #77A8D9;
+    --vcs-removed: #F27983;
+    
+    --syntax-tag: #5CCFE6;
+    --syntax-func: #FFD580;
+    --syntax-entity: #73D0FF;
+    --syntax-string: #BAE67E;
+    --syntax-regexp: #95E6CB;
+    --syntax-markup: #F28779;
+    --syntax-keyword: #FFA759;
+    --syntax-special: #FFE6B3;
+    --syntax-comment: #5C6773;
+    --syntax-constant: #D4BFFF;
+    --syntax-operator: #F29E74;
+    --syntax-error: #FF3333;
+}

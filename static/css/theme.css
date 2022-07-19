@@ -1,0 +1,235 @@
+/* ------------------------------- *\
+    Note: light coral
+\* ------------------------------- */
+/* colors */
+:root {
+    --color-note-almond-coral-primary: #FF7F50;
+    --color-note-almond-coral-bg-1: #fff8ef;
+    --color-note-almond-coral-bg-2: #EDEAE0;
+    --color-note-almond-coral-white: #ffffff;
+    --color-note-almond-coral-fg: var(--color-default-gray-9);
+    --color-note-almond-coral-selection: var(--color-default-gray-5);
+}
+/* selection */
+.theme-note--almond-coral .note-content ::-moz-selection {
+    background: var(--color-note-almond-coral-selection);
+}
+.theme-note--almond-coral .note-content ::selection {
+    background: var(--color-note-almond-coral-selection);
+}
+/* bg & fg */
+.theme-note--almond-coral,
+.theme-note--almond-coral .note-content{
+    background: var(--color-note-almond-coral-bg-1);
+    color: var(--color-default-gray-9)
+}
+/* toc */
+.theme-note--almond-coral .toc:hover::-webkit-scrollbar-thumb {
+    background-color: var(--color-note-almond-coral-bg-2);
+}
+.theme-note--almond-coral .toc {
+    border-left: 1px solid var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .toc .toc-levels a.toc-link {
+    color: var(--color-default-gray-8);
+}
+.theme-note--almond-coral .toc .toc-levels li:hover a.toc-link,
+.theme-note--almond-coral .toc .toc-levels li.active a.toc-link {
+    color: var(--color-note-almond-coral-primary);
+    font-weight: 600;
+}
+.theme-note--almond-coral .toc .toc-levels li:before,
+.theme-note--almond-coral .toc .toc-levels li.active:before {
+    background-color: var(--color-note-almond-coral-primary);
+}
+/* headings */
+.theme-note--almond-coral .note-content h1,
+.theme-note--almond-coral .note-content h2 {
+    color: var(--color-default-gray-9);
+}
+.theme-note--almond-coral .note-content h1:before,
+.theme-note--almond-coral .note-content h2:before {
+    background-color: var(--color-note-almond-coral-primary);
+    opacity: 0.2;
+}
+.theme-note--almond-coral .note-content h3{
+    color: var(--color-default-gray-9);
+}
+.theme-note--almond-coral .note-content h3:before {
+    border-bottom: 2px solid var(--color-note-almond-coral-primary);
+    opacity: 1;
+}
+.theme-note--almond-coral .note-content h4,
+.theme-note--almond-coral .note-content h5,
+.theme-note--almond-coral .note-content h6 {
+    color: var(--color-default-gray-9);
+}
+.theme-note--almond-coral .note-content h4:before {
+    border-left: 8px solid var(--color-note-almond-coral-primary);
+}
+/* text */
+.theme-note--almond-coral .note-content p {
+    color: var(--color-default-gray-9);
+}
+.theme-note--almond-coral .note-content a {
+    color: var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content strong em{
+    color: var(--color-note-almond-coral-primary);
+}
+/* list */
+.theme-note--almond-coral .note-content ul li::marker {
+    color: var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content ol > li:before {
+    color: var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content ul li input[type="checkbox"]{
+    border: 1px solid var(--color-default-gray-7);
+}
+.theme-note--almond-coral .note-content ul li input[type="checkbox"]:checked {
+    border: 1px solid var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content ul li input[type="checkbox"]:before {
+    color: var(--color-note-almond-coral-primary);
+}
+/* blockquote */
+.theme-note--almond-coral .note-content blockquote {
+    background-color: var(--color-note-almond-coral-white);
+    border: none;
+    border-left: 4px solid var(--color-note-almond-coral-primary);
+}
+/* inline code */
+.theme-note--almond-coral .note-content code {
+    color: var(--color-note-almond-coral-primary);
+    background-color: var(--color-note-almond-coral-bg-2);
+    border: 1px solid var(--color-note-almond-coral-primary)
+}
+.theme-note--almond-coral .note-content pre code[class*="language-"] {
+    background: var(--color-default-bg-2);
+    border: none;
+    color: var(--color-default-gray-5);
+}
+/* table */
+.theme-note--almond-coral .note-content table {
+    box-shadow: 0 0 0 1px var(--color-default-gray-3);
+    background-color: var(--color-note-almond-coral-white);
+}
+.theme-note--almond-coral .note-content thead {
+    border-bottom: 2px solid var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content thead th {
+    color: var(--color-note-almond-coral-primary);
+}
+.theme-note--almond-coral .note-content tbody tr:nth-child(odd) {
+    background-color: var(--color-note-almond-coral-bg-1);
+}
+/* image */
+.theme-note--almond-coral .note-content img {
+    border: none;
+}
+
+/* ------------------------------- *\
+    Slide: light coral
+\* ------------------------------- */
+/* colors */
+:root{
+    --color-slide-light-coral-bg: #fffefd;
+    --color-slide-light-coral-fg: var(--color-default-gray-10);
+    --color-slide-light-coral-primary: #FF7F50;
+    --color-slide-light-coral-selection: #d1deeb;
+}
+/* selection */
+.theme-slide--light-coral .slide-content ::-moz-selection {
+    background: var(--color-slide-light-coral-selection);
+}
+.theme-slide--light-coral .slide-content ::selection {
+    background: var(--color-slide-light-coral-selection);
+}
+/* slide page */
+.theme-slide--light-coral .slide-content .slide{
+    background-color: var(--color-slide-light-coral-bg);
+    color: var(--color-slide-light-coral-fg);
+}
+/* text: headings */
+.theme-slide--light-coral .slide-content .slide h1{
+    color: var(--color-slide-text);
+}
+.theme-slide--light-coral .slide-content .slide.cover h1:before{
+    background-color: var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide h2:before{
+    background-color: var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide h3{
+    color: var(--color-slide-light-coral-primary);
+    border-bottom: 2px solid var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide.cover h3{
+    color: var(--color-default-gray-7);
+    border-bottom: 0;
+}
+/* text: anchor */
+.theme-slide--light-coral .slide-content .slide a{
+    text-decoration: none;
+    color: var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide a:hover{
+    text-decoration: underline;
+}
+/* text: strong */
+.theme-slide--light-coral .slide-content .slide strong em{
+    color: var(--color-slide-light-coral-primary);
+}
+/* text: list */
+.theme-slide--light-coral .slide-content .slide ul li::marker,
+.theme-slide--light-coral .slide-content .slide ol > li:before{
+    color: var(--color-default-gray-11);
+}
+/* check */
+.theme-slide--light-coral .slide-content .slide ul .task-list-item input {
+    border: 2px solid var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide ul .task-list-item input[type="checkbox"]:before {
+    color: var(--color-slide-light-coral-primary);
+}
+/* table */
+.theme-slide--light-coral .slide-content .slide table{
+    box-shadow: 0 0 0 1px var(--color-default-gray-5);
+}
+.theme-slide--light-coral .slide-content .slide thead{
+    border-bottom: 3px solid var(--color-slide-light-coral-primary);
+}
+.theme-slide--light-coral .slide-content .slide thead th{
+    color: var(--color-default-gray-9);
+}
+.theme-slide--light-coral .slide-content .slide tbody tr:nth-child(odd){
+    background-color: var(--color-default-gray-2);
+}
+/* blockquote */
+.theme-slide--light-coral .slide-content .slide blockquote {
+    color: var(--color-slide-light-coral-fg);
+    background-color: var(--color-default-gray-3);
+    border: 0;
+    border-left: 8px solid var(--color-default-gray-6);
+}
+/* code */
+.theme-slide--light-coral .slide-content .slide code {
+    font-size: 26px;
+    color: var(--color-default-gray-5);
+}
+/* slide footer */
+.theme-slide--light-coral .slide-content .slide-footer {
+    background-color: var(--color-default-gray-3);
+}
+.theme-slide--light-coral .slide-content .slide-footer ul li {
+    color: var(--color-default-gray-7);
+}
+/* slide seperator */
+.theme-slide--light-coral .slide-content .slide-seperator span{
+    color: var(--color-slide-light-coral-primary);
+}
+/* page number */
+.theme-slide--light-coral .slide-content .slide-page-number {
+    color: var(--color-default-gray-8);
+}
