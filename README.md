@@ -27,7 +27,7 @@ Screenshot of markdown slide
 4. Checkout url `http://<address>` to the homepage
 5. Go to `Example > Markdown Guideline: Note` and `Example > Markdown Guideline: Slide` page to see the detail of usages
 
-## Power by
+## Powered by
 * showdown
 * codemirror
 * mathjax
