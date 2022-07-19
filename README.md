@@ -24,7 +24,8 @@ Screenshot of markdown slide
         password: Mdpage000
         ```
     * you can change to whatever you like
-4. Checkout `Example > Markdown Guideline: Note` and `Example > Markdown Guideline: Slide` to see the detail of usages
+4. Checkout url `http://<address>` to the homepage
+5. Go to `Example > Markdown Guideline: Note` and `Example > Markdown Guideline: Slide` page to see the detail of usages
 
 ## Power by
 * showdown
